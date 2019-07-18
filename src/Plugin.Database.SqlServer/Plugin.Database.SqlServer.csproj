@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Clean.Microservice.Serverless.Plugin.Database.SqlServer</AssemblyName>
+    <RootNamespace>Clean.Microservice.Serverless.Plugin.Database.SqlServer</RootNamespace>
+    <PackageId>Clean.Microservice.Serverless.Plugin.Database.SqlServer</PackageId>
+    <CodeAnalysisRuleSet>..\..\items\ca.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Company>Clean.Microservice.Serverless</Company>
+    <Authors>Clean.Microservice.Serverless Team</Authors>
+    <Version>0.1.3</Version>
+    <Copyright>Copyright 2019 (c) Clean.Microservice.Serverless. All rights reserved.</Copyright>
+    <Description>This plugin will be used to connect with SqlServer for Serverless .Net products.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>database database-sql database-sqlserver sql sqlserver serverless-database serverless</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ProjectGuid>{880DE8BB-EDC9-49E1-97F3-E7E12EA60585}</ProjectGuid>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\items\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="[11.0.2]" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.Database\Plugin.Database.csproj" />
+  </ItemGroup>
+
+</Project>
