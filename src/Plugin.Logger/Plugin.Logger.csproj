@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Clean.Microservice.Serverless.Plugin.Logger</AssemblyName>
+    <RootNamespace>Clean.Microservice.Serverless.Plugin.Logger</RootNamespace>
+    <PackageId>Clean.Microservice.Serverless.Plugin.Logger</PackageId>
+    <CodeAnalysisRuleSet>..\..\items\ca.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Company>Clean.Microservice.Serverless</Company>
+    <Authors>Clean.Microservice.Serverless Team</Authors>
+    <Version>0.4.7</Version>
+    <Copyright>Copyright 2019 (c) Clean.Microservice.Serverless. All rights reserved.</Copyright>
+    <Description>This plugin will be used to log exception, third party, request and response for WebApi and Azure Function using ILogger for Serverless .Net products.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>logger serverless-logger loggers serverless-loggers log serverless-log logs serverless-logs serverless</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ProjectGuid>{DFFBA10D-9E72-49FE-9AC6-D12EB4F027B3}</ProjectGuid>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Clean.Microservice.Serverless.Plugin.Logger.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Clean.Microservice.Serverless.Plugin.Logger.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\items\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SharedKernel.Core\SharedKernel.Core.csproj" />
+  </ItemGroup>
+
+</Project>
