@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\..\items\ca.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AssemblyName>Clean.Microservice.Serverless.Infrastructure</AssemblyName>
+    <RootNamespace>Clean.Microservice.Serverless.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Events\**" />
+    <Compile Remove="SharedKernel\**" />
+    <Compile Remove="UseCases\GetDefaultProduct\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="SharedKernel\**" />
+    <EmbeddedResource Remove="UseCases\GetDefaultProduct\**" />
+    <None Remove="Events\**" />
+    <None Remove="SharedKernel\**" />
+    <None Remove="UseCases\GetDefaultProduct\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CreateCustomer.sql" />
+    <None Remove="UseCases\CreateCustomer\V1\CreateCustomer.sql" />
+    <None Remove="UseCases\GetCustomerById\V1\GetCustomerById.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\items\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="UseCases\CreateCustomer\V1\CreateCustomer.sql" />
+    <EmbeddedResource Include="UseCases\GetCustomerById\V1\GetCustomerById.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.4" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.4" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.4" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Plugin.Database.SqlServer\Plugin.Database.SqlServer.csproj" />
+    <ProjectReference Include="..\SharedKernel.Core\SharedKernel.Core.csproj" />
+    <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CommandQuery.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandQuery.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CommandQuery.tt">
+      <LastGenOutput>CommandQuery.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>

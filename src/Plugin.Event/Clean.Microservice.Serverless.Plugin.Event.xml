@@ -1,0 +1,408 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Clean.Microservice.Serverless.Plugin.Event</name>
+    </assembly>
+    <members>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity">
+            <summary>
+            Activity class informartion
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.CorrelationId">
+            <summary>
+            Gets Correlation identification
+            </summary>
+            <value>
+            Correlation identification
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Customer">
+            <summary>
+            Gets customer information
+            </summary>
+            <value>
+            Customer information
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Microservice">
+            <summary>
+            Gets microservice name
+            <example>
+                Clean.Microservice.Serverless
+            </example>
+            </summary>
+            <value>
+            Microservice name
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Feature">
+            <summary>
+            Gets feature description
+            <example>
+               Activate
+            </example>
+            </summary>
+            <value>
+            Feature description
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Title">
+            <summary>
+            Gets title description
+            <example>
+               Ativação de cartão
+            </example>
+            </summary>
+            <value>
+            Title description
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Description">
+            <summary>
+            Gets activity description
+            <example>
+            Ativação de cartão final 2125 realizada com sucesso
+            </example>
+            </summary>
+            <value>
+            Activity description
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.CreateBy">
+            <summary>
+            Gets information of who created activity
+            <remarks>
+            client or user
+            </remarks>
+            </summary>
+            <value>
+            Information of who created activity
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.CreateAt">
+            <summary>
+            Gets activity created date
+            </summary>
+            <value>
+            Activity created date
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Successfully">
+            <summary>
+            Gets a value indicating whether success or failure in performing the activity
+            </summary>
+            <value>
+            A value indicating whether success or failure in performing the activity
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.AdditionalInfo">
+            <summary>
+            Gets additional information
+            </summary>
+            <value>
+            Additional information
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Activity.Builder(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Create activity.
+            </summary>
+            <param name="correlationId">Correlation identification.</param>
+            <param name="customerId">Customer id.</param>
+            <param name="customerName">Customer name.</param>
+            <param name="microservice">Microservice name.</param>
+            <param name="feature">Feature name.</param>
+            <param name="title">Activity title.</param>
+            <param name="description">Activity description.</param>
+            <param name="createBy">User that create the activity.</param>
+            <param name="createAt">Date and time of the activity creation.</param>
+            <param name="successfully">True if the activity was executed successfully. Otherwise, false.</param>
+            <param name="additionalInfo">Additional info.</param>
+            <returns>Activity created.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Customer">
+            <summary>
+            Customer class
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Customer.Id">
+            <summary>
+            Gets customer identification
+            </summary>
+            <value>
+            Customer identification
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Customer.Name">
+            <summary>
+            Gets customer name
+            </summary>
+            <value>
+            Customer name
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.Domain.ActivityMicroservice.Customer.Builder(System.String,System.String)">
+            <summary>
+            Create Customer.
+            </summary>
+            <param name="id">Customer id.</param>
+            <param name="name">Customer name.</param>
+            <returns>Customer created.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings">
+            <summary>
+            Settings for event reliability to retry poisoned event.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings.EventPublisherConnectionString">
+            <summary>
+            Gets the connection string for republish poisoned event.
+            </summary>
+            <value>
+            Connection string for republish poisoned event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings.RetryAttempts">
+            <summary>
+            Gets the maximum of retry attempts before publish the poisoned event.
+            </summary>
+            <value>
+            Maximum of retry attempts before publish the poisoned event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings.RetrySleepDuration">
+            <summary>
+            Gets the sleep duration to retry.
+            </summary>
+            <value>
+            The sleep duration to retry.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings.Builder(System.String,System.UInt32,System.TimeSpan)">
+            <summary>
+            Builder for event reliability settings.
+            </summary>
+            <param name="eventPublisherConnectionString">Connection string for republish poisoned event.</param>
+            <param name="retryAttempts">Maximum of retry attempts before publish the poisoned event.</param>
+            <param name="retrySleepDuration">The sleep duration to retry.</param>
+            <returns>Event reliability settings</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent">
+            <summary>
+            Entity to manage a poisoned event.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.Id">
+            <summary>
+            Gets or sets poisoned event id.
+            </summary>
+            <value>
+            Poisoned event id.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.EventStrategyConnection">
+            <summary>
+            Gets or sets connection string for event strategy to republish a poisoned event.
+            </summary>
+            <value>
+            Connection string for event strategy to republish a poisoned event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.Microservice">
+            <summary>
+            Gets or sets microservice name to identify the owner of the poisoned event.
+            </summary>
+            <value>
+            Microservice name to identify the owner of the poisoned event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.EventName">
+            <summary>
+            Gets or sets event or queue name to republish event.
+            </summary>
+            <value>
+            Event or queue name to republish event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.FailAt">
+            <summary>
+            Gets or sets date and time of fail.
+            </summary>
+            <value>
+            Date and time of fail.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.CorrelationId">
+            <summary>
+            Gets or sets correlation id.
+            </summary>
+            <value>
+            Correlation id.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.EventData">
+            <summary>
+            Gets or sets event data to be republished.
+            </summary>
+            <value>
+            Event data to be republished.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.CustomProperties">
+            <summary>
+            Gets or sets the custom properties from event.
+            </summary>
+            <value>
+            The custom properties from event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.AdditionalInfo">
+            <summary>
+            Gets or sets wathever additional info about the event.
+            </summary>
+            <value>
+            Wathever additional info about the event.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.FailData">
+            <summary>
+            Gets or sets fail data like error, message or others.
+            </summary>
+            <value>
+            Fail data like error, message or others.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Entities.PoisonedEvent.Retries">
+            <summary>
+            Gets or sets retries quantity before publish the poisoned event.
+            </summary>
+            <value>
+            Retries quantity before publish the poisoned event.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.EventFactory">
+            <summary>
+            Class to manage event plugin
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventFactory.Builder(System.Collections.Generic.Dictionary{System.String,Clean.Microservice.Serverless.Plugin.Event.IEventStrategy})">
+            <summary>
+            Build a event factory with a list of event publisher.
+            </summary>
+            <param name="publishers">Resolved event publishers will be used.</param>
+            <returns>Event factory created.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventFactory.Builder(System.String,Clean.Microservice.Serverless.Plugin.Event.IEventStrategy)">
+            <summary>
+            Build a event factory with an event publisher.
+            </summary>
+            <param name="name">Name to identify the event publisher.</param>
+            <param name="publisher">Resolved event publisher will be used.</param>
+            <returns>Event factory created.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventFactory.Get(System.String)">
+            <summary>
+            Get event publisher by name.
+            </summary>
+            <param name="name">Name of event publisher.</param>
+            <returns>Event publisher.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.EventIoC">
+            <summary>
+            Inversion of Control to event plugin
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventIoC.AddEventPlugin(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Clean.Microservice.Serverless.Plugin.Event.IEventStrategy)">
+            <summary>
+            Add event with IoC.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> injection.</param>
+            <param name="name">Name to identify the event publisher.</param>
+            <param name="publisher">Resolved event publisher will be used.</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> with event plugin injected.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.IEventFactory">
+            <summary>
+            Event factory.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.IEventFactory.Get(System.String)">
+            <summary>
+            Get event publisher by name.
+            </summary>
+            <param name="name">Name of event publisher.</param>
+            <returns>Event publisher.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.IEventStrategy">
+            <summary>
+            Interface to event publisher.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.IEventStrategy.ReliabilitySettings">
+            <summary>
+            Gets reliability settings if necessary.
+            </summary>
+            <value>
+            Reliability settings if necessary.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.IEventStrategy.PublishAsync(System.String,System.Object,System.String)">
+            <summary>
+            Publish a event.
+            </summary>
+            <param name="eventName">Event name.</param>
+            <param name="body">Message body.</param>
+            <param name="correlationId">Correlation id.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.IEventStrategy.PublishAsync(System.String,System.String)">
+            <summary>
+            Publish a event.
+            </summary>
+            <param name="eventName">Event name.</param>
+            <param name="correlationId">Correlation id.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.IEventStrategy.PublishAsync(System.String,System.Object,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Publish a event.
+            </summary>
+            <param name="eventName">Event name.</param>
+            <param name="body">Message body.</param>
+            <param name="customProperties">List of custom properties to send with message body.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages.NAME_ALREADY_EXISTS">
+            <summary>
+              Looks up a localized string similar to [Event] - Já existe outro publicador de eventos com o mesmo nome: {0}.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages.PUBLISHER_LIST_IS_EMPTY">
+            <summary>
+              Looks up a localized string similar to [Event] - Lista de publicadores de evento deve ter ao menos um item..
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.Resources.Messages.REQUIRED_PARAMETER">
+            <summary>
+              Looks up a localized string similar to [Event] - O parâmetro é obrigatório: {0}.
+            </summary>
+        </member>
+    </members>
+</doc>

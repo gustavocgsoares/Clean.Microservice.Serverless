@@ -1,0 +1,123 @@
+﻿<#@ template language="C#" hostSpecific="true" #><#@ 
+	assembly name="System.dll" #><#@ 
+	assembly name="System.Core.dll" #><#@ 
+	import namespace="System.IO" #><#@ 
+	import namespace="System.Linq" #><#@ 
+	import namespace="System.Text" #><#@ 
+	import namespace="System.Text.RegularExpressions" #><#
+
+	var path = Host.ResolvePath("");
+	var currentNamespace = GetNamespace(path);
+	var files = GetFilesFromDirectory(path, currentNamespace);
+
+	UpdateEmbeddedResource(path, files);#>using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+
+namespace <#= currentNamespace #>
+{
+    public static class CommandQuery
+    {<#
+	foreach (var file in files)
+    {
+		string filename = file.Replace(".sql", string.Empty);
+		filename = filename.Substring(filename.LastIndexOf(".") + 1);
+#>
+
+        public static string <#= filename #> => GetQuery("<#= file #>");
+<#
+    }
+#>
+
+        private static string GetQuery(string filename = null, [CallerMemberName]string propertyName = null)
+        {
+            var stream = typeof(CommandQuery).Assembly.GetManifestResourceStream(filename);
+
+            if (stream == null)
+            {
+                throw new Exception($"The file {propertyName}.sql was not found in <#= currentNamespace #>. Don't forget to set Build Action = 'Embedded resource' in the file properties.");
+            }
+
+            using (var sr = new StreamReader(stream))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+    }
+}
+<#+
+	string[] GetFilesFromDirectory(string path, string mainNamespace, bool firstCall = true)
+    {
+		var dirName = firstCall ? string.Empty : new DirectoryInfo(path).Name;
+		var newNamespace = firstCall ? mainNamespace : $"{mainNamespace}.{dirName}";
+
+        var files = Directory
+            .GetFiles(path)
+            .Where(file => Path.GetFileNameWithoutExtension(file) != "CommandQuery")
+            .Where(file => Path.GetExtension(file) == ".sql")
+			.Select(file => $"{newNamespace}.{Path.GetFileNameWithoutExtension(file)}.sql")
+            .ToArray();
+
+        foreach (string d in Directory.GetDirectories(path))
+        {
+            files = files.Concat(GetFilesFromDirectory(d, newNamespace, false)).ToArray();
+        }
+
+        return files;
+    }
+
+	void UpdateEmbeddedResource(string path, string[] files)
+	{
+		var csprojFile = FindCsprojFile(path);
+	
+		string text, originalText;
+		Encoding encoding;
+	
+		using (var sr = new StreamReader(csprojFile))
+		{
+			text = originalText = sr.ReadToEnd();
+			encoding = sr.CurrentEncoding;
+		}
+	
+		foreach (var file in files)
+		{
+			var fileName = Path.GetFileName(file);
+		
+			var regex = new Regex(@"(?<=[<])\w+(?=\s+Include\s*=\s*'(\w+\\)+{fileName}')".Replace("{fileName}", fileName).Replace('\'', '"'));
+		
+			text = regex.Replace(text, "EmbeddedResource");
+		}
+	
+		if (text != originalText) File.WriteAllText(csprojFile, text, encoding);
+	}
+
+	string FindCsprojFile(string path)
+	{
+		if (path == null) throw new Exception(".csproj not found");
+
+		var csproj = Directory.GetFiles(path, "*.csproj");
+
+		if (csproj == null || !csproj.Any()) return FindCsprojFile(Path.GetDirectoryName(path));
+
+		if (csproj.Count() > 1) throw new Exception("Was found more than one .csproj file in the same directory");
+
+		return csproj.First();
+	}
+
+
+	string GetNamespace(string path)
+	{
+		var csprojFile = FindCsprojFile(path);
+	
+		string text;
+
+		using (var sr = new StreamReader(csprojFile))
+		{
+			text = sr.ReadToEnd();
+		}
+	
+		var subdir = path.Replace(Path.GetDirectoryName(csprojFile), "").Replace(@"\", ".");
+	
+		return new Regex(@"(?<=[<]RootNamespace[>])(\w|[.])+(?=[<])").Match(text).Value + subdir;
+	}
+#>

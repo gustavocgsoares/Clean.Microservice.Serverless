@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "d00dc975-a9ab-4bef-a617-1528333697ea",
+    "ASPNETCORE_ENVIRONMENT": "Development",
+    "AUTH.TOKEN.VALIDATE.LIFETIME": false,
+    "ISDEBUG": true,
+
+    "CONNECTIONSTRINGS.CACHE": "",
+    "CONNECTIONSTRINGS.SQLSERVER.CUSTOMER": "ConnectionString"
+  }
+}

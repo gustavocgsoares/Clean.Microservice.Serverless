@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Clean.Microservice.Serverless.Plugin.Event.EventHub</name>
+    </assembly>
+    <members>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub">
+            <summary>
+            EventHub implementation using EventHub driver.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.#ctor(System.String,System.String,Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub"/> class.
+            </summary>
+            <exception cref="T:System.ArgumentException">When <paramref name="connectionString"/> is null, empty or invalid.</exception>
+            <exception cref="T:System.ArgumentException">When <paramref name="eventName"/>  is null, empty or invalid.</exception>
+            <param name="connectionString">EventHub connection string with format: Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessKeyName=SHARED_ACCESS_KEY_NAME;SharedAccessKey=SHARED_ACCESS_KEY.</param>
+            <param name="eventName">EventHub name to set EntityPath.</param>
+            <param name="reliabilitySettings">Event reliability settings.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.ReliabilitySettings">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.PublishAsync(System.String,System.Object,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Publish a event using EventHub with EventHub driver.
+            </summary>
+            <exception cref="T:System.ArgumentException">When <paramref name="eventName"/> is null or empty.</exception>
+            <param name="eventName">Event name.</param>
+            <param name="body">Message body.</param>
+            <param name="customProperties">List of custom properties to send with message body.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.PublishAsync(System.String,System.Object,System.String)">
+            <summary>
+            Publish a event using EventHub with EventHub driver.
+            </summary>
+            <exception cref="T:System.ArgumentException">When <paramref name="eventName"/> is null or empty.</exception>
+            <param name="eventName">Event name.</param>
+            <param name="body">Message body.</param>
+            <param name="correlationId">Correlation id.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.PublishAsync(System.String,System.String)">
+            <summary>
+            Publish a event using EventHub with EventHub driver.
+            </summary>
+            <exception cref="T:System.ArgumentException">When <paramref name="eventName"/> is null or empty.</exception>
+            <param name="eventName">Event name.</param>
+            <param name="correlationId">Correlation id.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHub.SendAsync(Microsoft.Azure.EventHubs.EventData)">
+            <summary>
+            Send data to EventHub.
+            </summary>
+            <param name="eventData">Data to be sent.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHubIoC">
+            <summary>
+            Class to manage EventHub with driver using dependency injection.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Event.EventHub.AzureEventHubIoC.AddEventHubPlugin(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings)">
+            <summary>
+            Add EventHub publisher with IoC.
+            </summary>
+            <exception cref="T:System.ArgumentException">When <paramref name="eventName"/> or <paramref name="connectionString"/> is null, empty or invalid.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionString"/> is invalid.</exception>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> injection.</param>
+            <param name="eventName">EventHub name.</param>
+            <param name="connectionString">EventHub connection string with format: Endpoint=sb://namespace_DNS_Name;SharedAccessKeyName=SHARED_ACCESS_KEY_NAME;SharedAccessKey=SHARED_ACCESS_KEY;EntityPath=.</param>
+            <param name="reliabilitySettings">Event reliability settings.</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> with EventHub plugin injected.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Event.EventHub.Resources.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.EventHub.Resources.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.EventHub.Resources.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Event.EventHub.Resources.Messages.REQUIRED_PARAMETER">
+            <summary>
+              Looks up a localized string similar to [EventHub] - O parâmetro é obrigatório..
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Clean.Microservice.Serverless.Plugin.Logger</name>
+    </assembly>
+    <members>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior">
+            <summary>
+            Log Behavior.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.#ctor(Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior"/> class.
+            </summary>
+            <param name="transactionFlow"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.OnSending">
+            <summary>
+            Gets or sets OnSending method.
+            </summary>
+            <value>
+            OnSending method.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.OnSent">
+            <summary>
+            Gets or sets OnSent method.
+            </summary>
+            <value>
+            OnSent method.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior.GetHttpMessageHandler(System.Net.Http.HttpClientHandler)">
+            <summary>
+            Call intercept handler.
+            </summary>
+            <param name="httpClientHandler"></param>
+            <returns>Intercept http message handler.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.Handler.InterceptingHttpMessageHandler">
+            <summary>
+            Intercept delegate handler.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Handler.InterceptingHttpMessageHandler.#ctor(System.Net.Http.HttpMessageHandler,Clean.Microservice.Serverless.Plugin.Logger.Entities.Behaviors.HttpMessageHandlerBehavior)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.Handler.InterceptingHttpMessageHandler"/> class.
+            </summary>
+            <param name="innerHandler"></param>
+            <param name="parent"></param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.Handler.InterceptingHttpMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogBlacklist">
+            <summary>
+            Logger blacklist with sensitive fields to be masked.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogWcf">
+            <summary>
+            Class to log wcf calls.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogWcf.#ctor(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogWcf"/> class.
+            </summary>
+            <param name="logger"></param>
+            <param name="transactionFlow"></param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogWcf.AfterReceiveReply(System.ServiceModel.Channels.Message@,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Entities.LogWcf.BeforeSendRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.Helpers.LoggerExtensions">
+            <summary>
+            Extensions for logger.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.Helpers.LoggerExtensions.MaskFields(System.String,System.Collections.Generic.List{System.String},System.Char,System.Boolean)">
+            <summary>
+            Mask json fields.
+            </summary>
+            <param name="json">Json with fields to be masked.</param>
+            <param name="blacklist">Logger blacklist with sensitive fields to be masked.</param>
+            <param name="mask">Mask charactere.</param>
+            <param name="showLength">True to concat the field length with the value masked. Otherwise, false.</param>
+            <returns>Json with masked fields.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger">
+            <summary>
+            Interface to logger.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger.InjectLogger(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Inject <see cref="T:Microsoft.Extensions.Logging.ILogger"/> sent by function method to link request logs.
+            </summary>
+            <remarks>This method is only required for azure function APIs.</remarks>
+            <param name="logger"><see cref="T:Microsoft.Extensions.Logging.ILogger"/> sent by function method.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger.LogApiAsync(Microsoft.AspNetCore.Http.HttpContext,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Log request and response for Web Api.
+            </summary>
+            <param name="context"><see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> request context.</param>
+            <param name="func">Injected function with request core method.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger.LogFunctionAsync(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.AspNetCore.Mvc.IActionResult,System.DateTime,System.DateTime)">
+            <summary>
+            Log request and response for Azure Function Api.
+            </summary>
+            <param name="request"><see cref="T:Microsoft.AspNetCore.Http.HttpRequest"/> with request data.</param>
+            <param name="response"><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> response data.</param>
+            <param name="start">Date and time when request started.</param>
+            <param name="end">Date and time when request ended.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.LoggingHandler">
+            <summary>
+            Logging handler to log third party requests.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.LoggingHandler.#ctor(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.LoggingHandler"/> class.
+            </summary>
+            <param name="serverlessLogger">See <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger"/>.</param>
+            <param name="transactionFlow">See <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow"/>.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.LoggingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger">
+            <summary>
+            Serverless logger representation.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.#ctor(Microsoft.Extensions.Logging.ILoggerFactory,Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow,Clean.Microservice.Serverless.Plugin.Logger.Entities.LogBlacklist)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger"/> class.
+            </summary>
+            <param name="loggerFactory">See <see cref="T:Microsoft.Extensions.Logging.ILoggerFactory"/>.</param>
+            <param name="transactionFlow">See <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow"/>.</param>
+            <param name="logBlacklist">Logger blacklist with sensitive fields to be masked.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.LogFunctionAsync(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.AspNetCore.Mvc.IActionResult,System.DateTime,System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.LogApiAsync(Microsoft.AspNetCore.Http.HttpContext,System.Func{System.Threading.Tasks.Task})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.InjectLogger(Microsoft.Extensions.Logging.ILogger)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLogger.BeginScope``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLoggerIoC">
+            <summary>
+            Inversion of Control to serverless logger plugin.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLoggerIoC.AddServerlessLoggerPlugin(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String[])">
+            <summary>
+            Add serverless logger with IoC.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> injection.</param>
+            <param name="loggerBlacklist">Logger blacklist with sensitive fields to be masked.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.Plugin.Logger.ServerlessLoggerIoC.AddServerlessLoggerPlugin(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.List{System.String})">
+            <summary>
+            Add serverless logger with IoC.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> injection.</param>
+            <param name="loggerBlacklist">Logger blacklist with sensitive fields to be masked.</param>
+        </member>
+    </members>
+</doc>
