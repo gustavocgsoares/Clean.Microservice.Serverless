@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Clean.Microservice.Serverless.SharedKernel.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.SoapHelper">
+            <summary>
+            Soap using ChannelFactory to build instance with Authentication when necessary
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.SoapHelper.GetServicesSoap``1(System.String,System.Collections.Generic.List{System.ServiceModel.Description.IEndpointBehavior})">
+            <summary>
+            Get SoapClient instance based on parameters
+            </summary>
+            <typeparam name="TSoapClient">Generic Soap Client type</typeparam>
+            <param name="endpointAddress"></param>
+            <param name="behaviors">optional behaviors list to apply on channel factory</param>
+            <returns>TSoapClient instance</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.SoapHelper.GetServicesSoap``1(System.String,System.Collections.Generic.List{System.ServiceModel.Description.IEndpointBehavior},System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Get SoapClient instance based on parameters
+            </summary>
+            <typeparam name="TSoapClient">Generic Soap Client type</typeparam>
+            <param name="endpointAddress"></param>
+            <param name="behaviors"></param>
+            <param name="auth">indicates if must to authenticate</param>
+            <param name="username">AD username</param>
+            <param name="password">AD password</param>
+            <param name="domain">AD domain</param>
+            <returns>TSoapClient instance</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.XmlSerializerHelper">
+            <summary>
+            Xml Helper to serializer
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.XmlSerializerHelper.Serialize``1(``0,System.Xml.XmlWriterSettings)">
+            <summary>
+            Serialize objet to xml
+            </summary>
+            <typeparam name="TObject">Object type</typeparam>
+            <param name="objectToSerializer">Object to serializer</param>
+            <param name="xmlSettings">Define if must use custom xml settings with XmlWriterSettings().GetXmlSerializerSettings()</param>
+            <returns>string with TObject serializated to XML</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.XmlSerializerSettingsHelpers">
+            <summary>
+            Helpers to helps get somes XmlWriterSettings already defined.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Infrastructure.Helpers.XmlSerializerSettingsHelpers.GetXmlSerializerSettings(System.Xml.XmlWriterSettings,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Gets XmlSerializerSettings
+            </summary>
+            <param name="settings"></param>
+            <param name="omitXmlDeclaration"></param>
+            <param name="encoding"></param>
+            <returns>XmlWriterSettings with settings filled</returns>
+        </member>
+    </members>
+</doc>
