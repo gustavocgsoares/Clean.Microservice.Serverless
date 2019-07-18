@@ -1,0 +1,9 @@
+﻿// This file is used by Code Analysis to maintain SuppressMessage
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not necessary", Scope = "member", Target = "~M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetAsync``1(System.String)~System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{``0}}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not necessary", Scope = "member", Target = "~M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetByteAsync(System.String)~System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{System.Byte[]}}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not necessary", Scope = "member", Target = "~M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.SetByteAsync(System.String,System.Byte[],System.TimeSpan)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not necessary", Scope = "member", Target = "~M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.SetStringAsync``1(System.String,``0,System.TimeSpan)")]

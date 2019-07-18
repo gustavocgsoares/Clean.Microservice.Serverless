@@ -1,0 +1,1615 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Clean.Microservice.Serverless.SharedKernel.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1">
+            <summary>
+            Base entity for domain classes.
+            </summary>
+            <typeparam name="TId">Type of entity id.</typeparam>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.Id">
+            <summary>
+            Gets or sets entity id.
+            </summary>
+            <value>
+            Entity id.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.Version">
+            <summary>
+            Gets or sets entity version for MongoDb.
+            </summary>
+            <value>
+            Entity version.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.op_Equality(Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity{`0},Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity{`0})">
+            <summary>
+            Equals operator comparing entity ids.
+            </summary>
+            <param name="a">First entity for comparison.</param>
+            <param name="b">Second entity for comparison.</param>
+            <returns>True if first entity id is equals to second entity id. Otherwise false.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.op_Inequality(Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity{`0},Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity{`0})">
+            <summary>
+            Different operator comparing entity ids.
+            </summary>
+            <param name="a">First entity for comparison.</param>
+            <param name="b">Second entity for comparison.</param>
+            <returns>True if first entity id is different to second entity id. Otherwise false.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.Equals(System.Object)">
+            <summary>
+            Equals overrides comparing entity ids.
+            </summary>
+            <param name="obj">Second entity for comparison.</param>
+            <returns>True if first entity id is equals to second entity id. Otherwise false.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.ToString">
+            <summary>
+            To string everrides to show entity id.
+            </summary>
+            <returns>Entity with id.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.GetHashCode">
+            <summary>
+            Generate hash code with entity type hash plus entity id hash.
+            </summary>
+            <returns>Hash code generated.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.Clone``1">
+            <summary>
+            Clone an entity to another with type.
+            </summary>
+            <typeparam name="T">Type of target entity.</typeparam>
+            <returns>Entity cloned.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Entity`1.Clone">
+            <summary>
+            Clone an entity.
+            </summary>
+            <returns>Return entity cloned object.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error">
+            <summary>
+            Error data object.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.ErrorLevel">
+            <summary>
+            Gets or sets error level.
+            </summary>
+            <value>
+            Error level.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.Message">
+            <summary>
+            Gets or sets error message.
+            </summary>
+            <value>
+            Error message.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.Exception">
+            <summary>
+            Gets or sets error exception when exists.
+            </summary>
+            <value>
+            Error exception when exists.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.Request">
+            <summary>
+            Gets or sets request data to simulate error case.
+            </summary>
+            <value>
+            Request data to simulate error case.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.Response">
+            <summary>
+            Gets or sets response data.
+            </summary>
+            <value>
+            Response data.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.MethodName">
+            <summary>
+            Gets or sets method name.
+            </summary>
+            <value>
+            Method name.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error.Code">
+            <summary>
+            Gets or sets error code.
+            </summary>
+            <value>
+            Error code.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ErrorLevel">
+            <summary>
+            Error levels.
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ErrorLevel.Internal">
+            <summary>
+            Internal - When is an unpredictable error.
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ErrorLevel.Business">
+            <summary>
+            Business - When is a predictable business error.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.IAggregateRoot">
+            <summary>
+            Aggregate root used to identify main entities.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.IEntity">
+            <summary>
+            Entity interface.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse`1">
+            <summary>
+            Service response used to avoid using exceptions.
+            </summary>
+            <typeparam name="T">Type of result.</typeparam>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse`1.Error">
+            <summary>
+            Gets or sets error data when exists.
+            </summary>
+            <value>
+            Error data when exists.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse`1.Result">
+            <summary>
+            Gets or sets data for successful requests.
+            </summary>
+            <value>
+            result data.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse`1.HasError">
+            <summary>
+            Gets a value indicating whether has error data.
+            </summary>
+            <value>
+            A value indicating whether has error data.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponseHelper">
+            <summary>
+            Service response helper.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponseHelper.WithResult``1(``0)">
+            <summary>
+            Generate service response with result.
+            </summary>
+            <typeparam name="TResult">Type of result.</typeparam>
+            <param name="result">Result for successful request.</param>
+            <returns>Service response generated.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponseHelper.WithError``1(Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error)">
+            <summary>
+            Generate service response with error result.
+            </summary>
+            <remarks>If error level not be setted the default value will be <see cref="F:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ErrorLevel.Internal"/>.</remarks>
+            <exception cref="T:System.ArgumentNullException">When error is null or error message is null or empty.</exception>
+            <typeparam name="TResult">Type of result.</typeparam>
+            <param name="error">Error data.</param>
+            <returns>Service response with error result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponseHelper.WithBusinessErrorMessage``1(System.String)">
+            <summary>
+            Generate service response with error result.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">When message is null or empty.</exception>
+            <typeparam name="TResult">Type of result.</typeparam>
+            <param name="message">Business error message.</param>
+            <returns>Service response with error result.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper">
+            <summary>
+            Cache helper using IDistributedCache.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.#ctor(Microsoft.Extensions.Logging.ILogger,Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper"/> class.
+            </summary>
+            <param name="logger">See <see cref="T:Microsoft.Extensions.Logging.ILogger"/>.</param>
+            <param name="distributedCache">See <see cref="T:Microsoft.Extensions.Caching.Distributed.IDistributedCache"/>.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetAsync``1(System.Func{System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{``0}}},System.String,System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetAsync``1(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetByteAsync(System.Func{System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{System.Byte[]}}},System.String,System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.GetByteAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.SetByteAsync(System.String,System.Byte[],System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CacheHelper.SetStringAsync``1(System.String,``0,System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.Constants">
+            <summary>
+            Constants for Helpers
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.Constants.RegexOnlyNumbers">
+            <summary>
+            Regex only numbers
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.Constants.RegexOnlyLetters">
+            <summary>
+            Regex only letters
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CryptHelper">
+            <summary>
+            Help to crypt/decrypt values.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.CryptHelper.CreateSha512(System.String)">
+            <summary>
+            Create SHA512 Hash.
+            </summary>
+            <param name="input"></param>
+            <returns>SHA512 hash based on input data</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper">
+            <summary>
+            Cache helper interface.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.GetAsync``1(System.Func{System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{``0}}},System.String,System.TimeSpan)">
+            <summary>
+            Get data from cache or get data from main source and set cache.
+            </summary>
+            <typeparam name="TResult">Type of result.</typeparam>
+            <param name="originalSourceFuncAsync">Func to get data from original source.</param>
+            <param name="cacheKey">Cache key.</param>
+            <param name="cacheExpirationTime">Cache expiration time</param>
+            <returns>Return service response with result data or error.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.GetByteAsync(System.Func{System.Threading.Tasks.Task{Clean.Microservice.Serverless.SharedKernel.Core.Domain.ServiceResponse{System.Byte[]}}},System.String,System.TimeSpan)">
+            <summary>
+            Get data from cache or get data from main source and set cache.
+            </summary>
+            <param name="originalSourceFuncAsync">Func to get data from original source.</param>
+            <param name="cacheKey">Cache key.</param>
+            <param name="cacheExpirationTime">Cache expiration time</param>
+            <returns>Return service response with result data or error.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.GetAsync``1(System.String)">
+            <summary>
+            Get data from cache.
+            </summary>
+            <typeparam name="TResult">Type of result.</typeparam>
+            <param name="cacheKey">Cache key.</param>
+            <returns>Return service response with result data or error.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.GetByteAsync(System.String)">
+            <summary>
+            Get data from cache.
+            </summary>
+            <param name="cacheKey">Cache key.</param>
+            <returns>Return service response with result data or error.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.SetByteAsync(System.String,System.Byte[],System.TimeSpan)">
+            <summary>
+            Set cache data.
+            </summary>
+            <param name="cacheKey">Cache key.</param>
+            <param name="data">Array data byte to be cached.</param>
+            <param name="cacheExpirationTime">Cache expiration time.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ICacheHelper.SetStringAsync``1(System.String,``0,System.TimeSpan)">
+            <summary>
+            Set cache data.
+            </summary>
+            <typeparam name="TData">Type of data.</typeparam>
+            <param name="cacheKey">Cache key.</param>
+            <param name="data">DAta to be cached.</param>
+            <param name="cacheExpirationTime">Cache expiration time.</param>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.JwtHelper">
+            <summary>
+            Jwt Helper
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.JwtHelper.ParseTokenAsObject``1(``0,System.String)">
+            <summary>
+            Parse JWT token as destination object.
+            </summary>
+            <typeparam name="TDestination">Destination object.</typeparam>
+            <param name="destination"></param>
+            <param name="token">Token JWT</param>
+            <returns>TDestination</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.JwtHelper.DecodeToken(System.String)">
+            <summary>
+            Decodes jwt token
+            </summary>
+            <param name="token">JwtToken</param>
+            <returns>base64 converted at byte</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ParserJsonHelper">
+            <summary>
+            Helper to work with Json parser
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.ParserJsonHelper.ParseEventDataToObject``1(Microsoft.Azure.EventHubs.EventData,System.Boolean)">
+            <summary>
+            Convert Azure Event Hub Event data to TDestination
+            </summary>
+            <typeparam name="TDestination">Destination object</typeparam>
+            <param name="eventData">eventa data</param>
+            <param name="usePrivateCamelCaseSerializer">Case not informed will be used JsonSerializerSettings().GetJsonSerializerSettingsWithPrivateCamelCaseSerializer()</param>
+            <returns>object type TDestination</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.StringHelper">
+            <summary>
+            Helper for string operations
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.StringHelper.OnlyNumbers(System.String)">
+            <summary>
+            Apply regex to let only numbers
+            </summary>
+            <param name="text">text to replace</param>
+            <returns>string with only numbers</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Helpers.StringHelper.OnlyLetters(System.String)">
+            <summary>
+            Apply regex to let only text
+            </summary>
+            <param name="text">text to replace</param>
+            <returns>string with only letters</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.BAD_REQUEST_DEFAULT_CODE">
+            <summary>
+              Looks up a localized string similar to INVALID_DATA_REQUEST.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.BAD_REQUEST_DEFAULT_MESSAGE">
+            <summary>
+              Looks up a localized string similar to Dados enviados inválidos!.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.CACHE_MESSAGE_FAIL">
+            <summary>
+              Looks up a localized string similar to Não foi possível obter os dados solicitados..
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Resources.HttpMessage.COMPOSITE_VALIDATION_FAIL_MESSAGE">
+            <summary>
+              Looks up a localized string similar to Validação do campo {0} falhou!.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.JsonSerializerSettingsHelpers">
+            <summary>
+            Helpers to helps get somes JsonSerializerSettings already defined.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.JsonSerializerSettingsHelpers.GetJsonSerializerSettingsWithPrivateCamelCaseSerializer(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Gets JsonSerializerSettings with following settings:
+            <![CDATA[
+            ContractResolver = new PrivateCamelCaseSerializer();
+            Converters = new List<JsonConverter> { new StringEnumConverter() };
+            NullValueHandling = NullValueHandling.Include;
+            DefaultValueHandling = DefaultValueHandling.Populate
+            ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+            ]]>
+            </summary>
+            <param name="settings">extension to current JsonSerializerSettings</param>
+            <returns>JsonSerializerSettings with settings filled</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.AllPropertiesValueProvider">
+            <summary>
+            Get properties info to serializer
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.AllPropertiesValueProvider.#ctor(System.Reflection.PropertyInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.AllPropertiesValueProvider"/> class.
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.AllPropertiesValueProvider.GetValue(System.Object)">
+            <summary>
+            Gets value
+            </summary>
+            <param name="target"></param>
+            <returns>object</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.AllPropertiesValueProvider.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets value
+            </summary>
+            <param name="target"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.PrivateCamelCaseSerializer">
+            <summary>
+            Class to serializer, using JsonSerializerSettings, thats apply the following resolvers: Camel Case, Private Set
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Serializers.Json.PrivateCamelCaseSerializer.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+            <summary>
+            Create properties serializer
+            </summary>
+            <param name="type">object type</param>
+            <param name="memberSerialization">member serialization</param>
+            <returns>List of JsonProperty</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants">
+            <summary>
+            Helper constants.
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCustomerName">
+            <summary>
+            Digital Bank SmartId claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCustomerId">
+            <summary>
+            Customer id claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCustomerAccountId">
+            <summary>
+            Customer account claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCustomerDocument">
+            <summary>
+            Customer Document claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtAppType">
+            <summary>
+            Application Type claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtMachine">
+            <summary>
+            Machine name claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtHostIp">
+            <summary>
+            Host ip claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtLocalIp">
+            <summary>
+            Local ip claim
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtToken">
+            <summary>
+            Auth Token
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCorrelationId">
+            <summary>
+            Auth Token
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.Constants.JwtCustomerDocumentLength">
+            <summary>
+            Customer Document Length
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow">
+            <summary>
+            Transaction flow for azure function projects.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow"/> class.
+            </summary>
+            <param name="accessor">See <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/>.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow.IsAuthenticated">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow.GetClaimsIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.FunctionTransactionFlow.GetClaimValueOrDefault``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow">
+            <summary>
+            Transaction flow interface.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Id">
+            <summary>
+            Gets user id.
+            </summary>
+            <value>
+            User id.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Name">
+            <summary>
+            Gets user name.
+            </summary>
+            <value>
+            User name.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Nickname">
+            <summary>
+            Gets user nickname.
+            </summary>
+            <value>
+            User nickname.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Email">
+            <summary>
+            Gets user email.
+            </summary>
+            <value>
+            User email.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.ClientId">
+            <summary>
+            Gets clientId.
+            </summary>
+            <value>
+            ClientId.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Scope">
+            <summary>
+            Gets scope.
+            </summary>
+            <value>
+            Scope.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Role">
+            <summary>
+            Gets role.
+            </summary>
+            <value>
+            Role.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.CustomerId">
+            <summary>
+            Gets customer id.
+            </summary>
+            <value>
+            Customer id.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.CustomerDocument">
+            <summary>
+            Gets customer document.
+            </summary>
+            <value>
+            Customer document.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.AppType">
+            <summary>
+            Gets user application type.
+            </summary>
+            <example>Mobile, Postman and others.</example>
+            <value>
+            User application type.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Machine">
+            <summary>
+            Gets service machine name from running application.
+            </summary>
+            <value>
+            Service machine name from running application.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Culture">
+            <summary>
+            Gets current culture.
+            </summary>
+            <value>
+            Current culture.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.HostIp">
+            <summary>
+            Gets user host ip.
+            </summary>
+            <value>
+            User host ip.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.LocalIp">
+            <summary>
+            Gets local ip where application is running.
+            </summary>
+            <value>
+            Local ip where application is running.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.Token">
+            <summary>
+            Gets jwt token used from user.
+            </summary>
+            <value>
+            Jwt token used from user.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.CorrelationId">
+            <summary>
+            Gets transaction correlation id.
+            </summary>
+            <value>
+            Transaction correlation id.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.IsAuthenticated">
+            <summary>
+            Check if user is authenticated.
+            </summary>
+            <returns>True if user is authenticated. Otherwise false.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.IsAnonymous">
+            <summary>
+            Check if user is anonymous.
+            </summary>
+            <returns>True if user is anonymous. Otherwise false.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.ITransactionFlow.GetClaimsIdentity">
+            <summary>
+            Get list of claims from identity.
+            </summary>
+            <returns>List of claims from identity</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow">
+            <summary>
+            Base transaction flow.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Id">
+            <summary>
+            Gets user id using jwt subject field.
+            </summary>
+            <value>
+            User id using jwt subject field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Name">
+            <summary>
+            Gets user name using jwt subject field.
+            </summary>
+            <value>
+            User name using jwt subject field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Nickname">
+            <summary>
+            Gets user nickname using jwt preferred user name field.
+            </summary>
+            <value>
+            User nickname using jwt preferred user name field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Email">
+            <summary>
+            Gets user email using jwt email field.
+            </summary>
+            <value>
+            User email using jwt email field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.ClientId">
+            <summary>
+            Gets clientId using jwt clientId field.
+            </summary>
+            <value>
+            ClientId using jwt clientId field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Scope">
+            <summary>
+            Gets scope using jwt scope field.
+            </summary>
+            <value>
+            Scope using jwt scope field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Role">
+            <summary>
+            Gets role using jwt role field.
+            </summary>
+            <value>
+            Role using jwt role field.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.CustomerId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.CustomerDocument">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.AppType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Machine">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Culture">
+            <summary>
+            Gets current culture from thread.
+            </summary>
+            <value>
+            Current culture from thread.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.HostIp">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.LocalIp">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.Token">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.CorrelationId">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.IsAuthenticated">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.IsAnonymous">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.GetClaimsIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.TransactionFlow.GetClaimValueOrDefault``1(System.String,``0)">
+            <summary>
+            Get claim value or default.
+            </summary>
+            <typeparam name="TValue">Type of value data.</typeparam>
+            <param name="claim">Name of claim.</param>
+            <param name="defaultValue">Default value when claim not exists or value not found.</param>
+            <returns>Claim value or default.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow">
+            <summary>
+            Transaction flow for web api projects.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow"/> class.
+            </summary>
+            <param name="accessor">See <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/>.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow.IsAuthenticated">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow.GetClaimsIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.Transaction.WebApiTransactionFlow.GetClaimValueOrDefault``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1">
+            <summary>
+            Base command class.
+            </summary>
+            <typeparam name="TResult">Type of result.</typeparam>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1.Timestamp">
+            <summary>
+            Gets timestamp with UtcNow value.
+            </summary>
+            <value>
+            Timestamp with UtcNow value.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.Command`1.IsValid">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand">
+            <summary>
+            Command message.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand.Timestamp">
+            <summary>
+            Gets command timestamp.
+            </summary>
+            <value>
+            Timestamp.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand.ValidationResult">
+            <summary>
+            Gets validation result.
+            </summary>
+            <value>
+            Validation result.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand.IsValid">
+            <summary>
+            Check if command is valid. When not, the <see cref="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand.ValidationResult"/> will be filled.
+            </summary>
+            <returns>True if command is valid. Otherwise false.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification">
+            <summary>
+            Domain notification event message.
+            </summary>
+        </member>
+        <member name="F:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification.UnknownMessageCode">
+            <summary>
+            Used to show a default message code.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification"/> class.
+            </summary>
+            <param name="messageType">Message type.</param>
+            <param name="messages">List of code and message validations.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification"/> class.
+            </summary>
+            <param name="messageType">Message type.</param>
+            <param name="message">Message validation with default code [NO_CODE].</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification"/> class.
+            </summary>
+            <param name="messageType">Message type.</param>
+            <param name="code">Validation code.</param>
+            <param name="message">Validation message.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification.Messages">
+            <summary>
+            Gets validation messages.
+            </summary>
+            <value>
+            Validation messages.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase">
+            <summary>
+            Domain notification use case used to notify system errors.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase"/> class.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase.Handle(Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification,System.Threading.CancellationToken)">
+            <summary>
+            Notify system error.
+            </summary>
+            <param name="message">Domain notification message.</param>
+            <param name="cancellationToken"></param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase.GetNotifications">
+            <summary>
+            Get notifications.
+            </summary>
+            <returns>List of domain notifications.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase.HasNotifications">
+            <summary>
+            Check if use case has domain notifications.
+            </summary>
+            <returns>True if has domain notifications.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotificationUseCase.Dispose">
+            <summary>
+            Clear the list of notifications.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Events.EventMessage">
+            <summary>
+            Event message.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Events.EventMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Events.EventMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Events.EventMessage.Timestamp">
+            <summary>
+            Gets timestamp with UtcNow value.
+            </summary>
+            <value>
+            Timestamp with UtcNow value.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.IMessage">
+            <summary>
+            Interface for message types.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.IMessage.MessageType">
+            <summary>
+            Gets message type.
+            </summary>
+            <value>
+            Message type.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.IMessage.AggregateId">
+            <summary>
+            Gets aggregate id.
+            </summary>
+            <value>
+            Aggregate id.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.Message">
+            <summary>
+            Base class for message types.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.Message.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.Message"/> class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.Message.MessageType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Messages.Message.AggregateId">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute">
+            <summary>
+            Attribute to resolve compare properties
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute"/> class.
+            </summary>
+            <param name="comparisonProperty">The property of the object to compare.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute.#ctor(System.String,System.Func{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute"/> class.
+            </summary>
+            <param name="comparisonProperty">The property of the object to compare.</param>
+            <param name="errorMessageAccessor">The function that enables access to validation resources</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute"/> class.
+            </summary>
+            <param name="comparisonProperty">The property of the object to compare.</param>
+            <param name="errorMessage">The error message to associate with a validation control</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.CompareCustomAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Determines whether the specified value of the object is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <param name="validationContext">Context</param>
+            <returns>true if the specified value is valid; otherwise, false.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.ValidateNestedObjectAttribute">
+            <summary>
+            Validate nested object attribute.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Attributes.ValidateNestedObjectAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Determines whether the specified value of the object is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <param name="validationContext">Context.</param>
+            <returns>True if the specified value is valid; otherwise, false.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel">
+            <summary>
+            Response model for bad request.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyCollection{Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel"/> class.
+            </summary>
+            <param name="code">Response code.</param>
+            <param name="message">Response message.</param>
+            <param name="validations">Response validations.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel.Validations">
+            <summary>
+            Gets response validations.
+            </summary>
+            <value>
+            Response validations.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel.GetDefaultMessage(System.Collections.Generic.IReadOnlyCollection{Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel})">
+            <summary>
+            Generate bad request model with default message.
+            </summary>
+            <param name="validations">Response validations.</param>
+            <returns>Bad request model generated.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestModel.GetFromNotifications(System.Collections.Generic.IEnumerable{Clean.Microservice.Serverless.SharedKernel.Core.UseCases.DomainNotifications.DomainNotification})">
+            <summary>
+            Generate bad request model with default message.
+            </summary>
+            <param name="notifications">Domain notifications.</param>
+            <returns>Bad request model generated.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel">
+            <summary>
+            Bad request validation model.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel.Code">
+            <summary>
+            Gets or sets validation code.
+            </summary>
+            <value>
+            Response code.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel.Message">
+            <summary>
+            Gets or sets validation code.
+            </summary>
+            <value>
+            Response code.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel.ToModel(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Convert <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> to <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel"/>.
+            </summary>
+            <param name="validationResult">Validation result.</param>
+            <returns>Bad request validation model with validation result converted.</returns>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel.ToModel(System.String,System.String)">
+            <summary>
+            Convert code and message to <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.BadRequestValidationModel"/>.
+            </summary>
+            <param name="code">Validation code.</param>
+            <param name="message">Validation message.</param>
+            <returns>Bad request validation model with validation result converted.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.IModel">
+            <summary>
+            Interface for api model.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.IRequestModel">
+            <summary>
+            Interface for api request model.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.IResponseModel">
+            <summary>
+            Interface for api response model.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.MessageResponseModel">
+            <summary>
+            Base response model with message fields.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.MessageResponseModel.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.MessageResponseModel"/> class.
+            </summary>
+            <param name="code">Response code.</param>
+            <param name="message">Resposne message.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.MessageResponseModel.Code">
+            <summary>
+            Gets response code.
+            </summary>
+            <value>
+            Response code.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.MessageResponseModel.Message">
+            <summary>
+            Gets response message.
+            </summary>
+            <value>
+            Response message.
+            </value>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.ModelExtensions">
+            <summary>
+            Extensions for models.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.ModelExtensions.GetValidations``1(``0)">
+            <summary>
+            Get model validations from data annotations.
+            </summary>
+            <typeparam name="TModel">Type of model.</typeparam>
+            <param name="model">Model to be validated.</param>
+            <returns>Model validations.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValueModel">
+            <summary>
+            Define compound value.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValueModel.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValueModel.Symbol">
+            <summary>
+            Symbol.
+            </summary>
+            <example>%</example>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValueModel.Formatted">
+            <summary>
+            Formatted value with symbol.
+            </summary>
+            <example>5%</example>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValuePeriodModel">
+            <summary>
+            Define compound value with period.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CompoundValuePeriodModel.Period">
+            <summary>
+            Period of a certain amount, such as interest per month.
+            </summary>
+            <example>a.m.</example>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CurrencyModel">
+            <summary>
+            Define currency data.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CurrencyModel.Iso">
+            <summary>
+            Iso code.
+            </summary>
+            <example>BRL</example>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.CurrencyModel.Symbol">
+            <summary>
+            Currency symbol.
+            </summary>
+            <example>R$</example>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel">
+            <summary>
+            Define the data of a date.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel.FullDate">
+            <summary>
+            Full date.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel.ShortDate">
+            <summary>
+            Short date.
+            </summary>
+            <example>23-01-2019</example>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel.Day">
+            <summary>
+            Date day.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel.Month">
+            <summary>
+            Date month.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel.Year">
+            <summary>
+            Date year.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModelConverter">
+            <summary>
+            Convert <see cref="T:System.DateTimeOffset"/> to <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModel"/>.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateModelConverter.Convert(System.DateTimeOffset,AutoMapper.ResolutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel">
+            <summary>
+            Define the date month.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel.Abbreviated">
+            <summary>
+            Abbreviated month.
+            </summary>
+            <example>JAN</example>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel.Number">
+            <summary>
+            Month number.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel.Name">
+            <summary>
+            Month name.
+            </summary>
+            <example>Janeiro</example>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel.Builder(System.Int32)">
+            <summary>
+            Month builder.
+            </summary>
+            <param name="month">Month number.</param>
+            <returns>Instance of <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModel"/>.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_APRIL">
+            <summary>
+              Looks up a localized string similar to Abril.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_APRIL_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Abr.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_AUGUST">
+            <summary>
+              Looks up a localized string similar to Agosto.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_AUGUST_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Ago.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_DECEMBER">
+            <summary>
+              Looks up a localized string similar to Dezembro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_DECEMBER_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Dez.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_FEBRUARY">
+            <summary>
+              Looks up a localized string similar to Fevereiro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_FEBRUARY_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to FeV.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JANUARY">
+            <summary>
+              Looks up a localized string similar to Janeiro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JANUARY_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Jan.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JULY">
+            <summary>
+              Looks up a localized string similar to Julho.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JULY_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Jul.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JUNE">
+            <summary>
+              Looks up a localized string similar to Junho.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_JUNE_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Jun.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_MARCH">
+            <summary>
+              Looks up a localized string similar to Março.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_MARCH_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Mar.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_MAY">
+            <summary>
+              Looks up a localized string similar to Maio.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_MAY_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Mai.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_NOVEMBER">
+            <summary>
+              Looks up a localized string similar to Novembro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_NOVEMBER_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Nov.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_OCTOBER">
+            <summary>
+              Looks up a localized string similar to Outubro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_OCTOBER_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Out.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_SEPTEMBER">
+            <summary>
+              Looks up a localized string similar to Setembro.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateMonthModelFields.MONTH_SEPTEMBER_ABBREVIATED">
+            <summary>
+              Looks up a localized string similar to Set.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel">
+            <summary>
+            Define the time of a date.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel.Hour">
+            <summary>
+            Date hour.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel.Minute">
+            <summary>
+            Date minute.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel.Second">
+            <summary>
+            Date second.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel.FormattedTime">
+            <summary>
+            Formatted time.
+            </summary>
+            <example>15:32:12</example>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModelConverter">
+            <summary>
+            Convert <see cref="T:System.DateTimeOffset"/> to <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModel"/>.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateTimeModelConverter.Convert(System.DateTimeOffset,AutoMapper.ResolutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateYearModel">
+            <summary>
+            Define the year of a date.
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateYearModel.Abbreviated">
+            <summary>
+            Abbreviated year. Eg: 19
+            </summary>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateYearModel.Full">
+            <summary>
+            Full year. Eg: 2019
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateYearModel.Builder(System.Int32)">
+            <summary>
+            Year builder.
+            </summary>
+            <param name="fullYear">Full year.</param>
+            <returns>Instance of <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.V1.DateYearModel"/>.</returns>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult">
+            <summary>
+            validation result for nested objects.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult"/> class.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult"/> class.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+            <param name="memberNames">Member names.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult.#ctor(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult"/> class.
+            </summary>
+            <param name="validationResult">Validation result.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult.Results">
+            <summary>
+            Gets validation results.
+            </summary>
+            <value>
+            Validation results.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Models.Validations.CompositeValidationResult.AddResult(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Add validation result.
+            </summary>
+            <param name="validationResult">Validation result.</param>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Presenters.IPresenter">
+            <summary>
+            Interface for api presenter response.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Repositories.IRepository">
+            <summary>
+            Interface for infrastructure repository.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Results.IResult">
+            <summary>
+            Interface for use case result.
+            </summary>
+        </member>
+        <member name="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase">
+            <summary>
+            Base use case class.
+            </summary>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase"/> class.
+            </summary>
+            <param name="mediator">See <see cref="T:MediatR.IMediator"/>.</param>
+            <param name="logger">See <see cref="T:Microsoft.Extensions.Logging.ILogger"/>.</param>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.Logger">
+            <summary>
+            Gets logger.
+            </summary>
+            <value>
+            Logger.
+            </value>
+        </member>
+        <member name="P:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.Notify">
+            <summary>
+            Gets notify dictionary.
+            </summary>
+            <value>
+            Notify dictionary.
+            </value>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.NotifyValidationErrors(Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand)">
+            <summary>
+            Notify validation errors used when <see cref="T:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.Commands.ICommand"/> is invalid.
+            </summary>
+            <param name="message">Message to be validated.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.NotifyError(Clean.Microservice.Serverless.SharedKernel.Core.Domain.Error)">
+            <summary>
+            Notify system error.
+            </summary>
+            <param name="error">Error data.</param>
+        </member>
+        <member name="M:Clean.Microservice.Serverless.SharedKernel.Core.UseCases.UseCase.NotifyError(System.String,System.String)">
+            <summary>
+            Notify system error with code and message.
+            </summary>
+            <param name="code">Error code.</param>
+            <param name="message">error message.</param>
+        </member>
+    </members>
+</doc>

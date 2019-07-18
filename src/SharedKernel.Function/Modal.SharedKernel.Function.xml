@@ -1,0 +1,480 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Modal.SharedKernel.Function</name>
+    </assembly>
+    <members>
+        <member name="T:Modal.SharedKernel.Function.Constants">
+            <summary>
+            Function base constants.
+            </summary>
+        </member>
+        <member name="F:Modal.SharedKernel.Function.Constants.HeaderNameCorrelationId">
+            <summary>
+            Header name of X-Correlation-Id
+            </summary>
+        </member>
+        <member name="F:Modal.SharedKernel.Function.Constants.HeaderNameRequestId">
+            <summary>
+            Header name of X-Request-Id
+            </summary>
+        </member>
+        <member name="F:Modal.SharedKernel.Function.Constants.HeaderNameDetailedError">
+            <summary>
+            Header name of X-Detailed-Error
+            </summary>
+        </member>
+        <member name="F:Modal.SharedKernel.Function.Constants.ServerVariablesFowardedFor">
+            <summary>
+            Client Ip Address
+            </summary>
+        </member>
+        <member name="F:Modal.SharedKernel.Function.Constants.ServerVariablesRemoteAddr">
+            <summary>
+            Ip Address
+            </summary>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Extensions.FunctionExtensions">
+            <summary>
+            Function extension methods.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Extensions.FunctionExtensions.ExtractRequestBody``1(Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
+            <summary>
+            Extract request body converting to <typeparamref name="TRequestModel"/>.
+            </summary>
+            <typeparam name="TRequestModel">Type of request model with <see cref="T:Clean.Microservice.Serverless.UseCases.Models.IRequestModel"/> interface.</typeparam>
+            <param name="request">Http request to extract body.</param>
+            <param name="keepStreamOpen">True to leave the stream open after the <see cref="T:System.IO.StreamReader"/> object is disposed; otherwise, false.</param>
+            <returns>Converted <typeparamref name="TRequestModel"/> from request body.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Extensions.FunctionExtensions.ExecutePipeline(Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Microsoft.AspNetCore.Http.HttpRequest,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Execute middleware pipeline.
+            </summary>
+            <param name="functionMiddleware">Function logic as middleware to be called inside pipeline.</param>
+            <param name="serverlessLogger">Modal logger.</param>
+            <param name="request">Function http request.</param>
+            <param name="acessor">See <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/>.</param>
+            <returns>Response <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> after pipeline execution.</returns>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Helpers.CosmosDbTriggerHelper">
+            <summary>
+            Helpers for cosmosdb trigger.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.CosmosDbTriggerHelper.CreatePatternLog(System.String,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Create pattern log.
+            </summary>
+            <param name="className">Name of trigger class.</param>
+            <param name="serverlessLogger">Logger to save log with pattern created and execution time.</param>
+            <returns>Pattern log created.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.CosmosDbTriggerHelper.GetCorrelationId(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            Extract correlationId value from <see cref="T:Microsoft.Azure.EventHubs.EventData"/> properties.
+            </summary>
+            <param name="serverlessLogger">Logger to save log with correlationId extracted.</param>
+            <param name="patternLog">Pattern log.</param>
+            <returns>CorrelationId value extracted.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.CosmosDbTriggerHelper.StartDocumentProcessAsync(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Microsoft.Extensions.Logging.ILogger,System.String,System.Collections.Generic.IReadOnlyList{Microsoft.Azure.Documents.Document},System.Func{Microsoft.Azure.Documents.Document,System.Threading.Tasks.Task})">
+            <summary>
+            Start cosmosdb process.
+            </summary>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="logger">Logger to be injected in <paramref name="serverlessLogger"/>.</param>
+            <param name="patternLog">Pattern log.</param>
+            <param name="documents">Documents to be processed.</param>
+            <param name="func">Process with business rules to be processed.</param>
+            <returns>Task executed.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.CosmosDbTriggerHelper.EndDocumentProcess``1(``0,System.String,Clean.Microservice.Serverless.UseCases.DomainNotifications.DomainNotificationUseCase,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            End cosmosdb process logging notification messages.
+            </summary>
+            <typeparam name="TResult">Type of result data.</typeparam>
+            <param name="result">Result data. If the object is null, throw exception. Otherwise, the trigger was processed successfully.</param>
+            <param name="correlationId">Correlation id.</param>
+            <param name="notificationUseCase">Use case to extract notifications.</param>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="patternLog">Pattern log.</param>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Helpers.EventHubTriggerHelper">
+            <summary>
+            Helpers for event hub trigger.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.EventHubTriggerHelper.CreatePatternLog(System.String)">
+            <summary>
+            Create pattern log.
+            </summary>
+            <param name="className">Name of trigger class.</param>
+            <returns>Pattern log created.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.EventHubTriggerHelper.GetCorrelationId(Microsoft.Azure.EventHubs.EventData,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            Extract correlationId value from <see cref="T:Microsoft.Azure.EventHubs.EventData"/> properties.
+            </summary>
+            <param name="eventData">Event data.</param>
+            <param name="serverlessLogger">Logger to save log with correlationId extracted.</param>
+            <param name="patternLog">Pattern log.</param>
+            <returns>CorrelationId value extracted.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.EventHubTriggerHelper.StartEventProcessAsync(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Microsoft.Extensions.Logging.ILogger,System.String,Microsoft.Azure.EventHubs.EventData[],System.Func{Microsoft.Azure.EventHubs.EventData,System.Threading.Tasks.Task},System.Func{Microsoft.Azure.EventHubs.EventData,System.Exception,System.Threading.Tasks.Task},Clean.Microservice.Serverless.Plugin.Event.Entities.EventReliabilitySettings)">
+            <summary>
+            Start event hub process.
+            </summary>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="logger">Logger to be injected in <paramref name="serverlessLogger"/>.</param>
+            <param name="patternLog">Pattern log.</param>
+            <param name="events">Events to be processed.</param>
+            <param name="processEventAsync">Process with business rules to be processed.</param>
+            <param name="publishPoisonedEventAsync">Function receiving error parameter to publish poisoned event data.</param>
+            <param name="eventReliabilitySettings">Event reliability settings.</param>
+            <returns>Task executed.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.EventHubTriggerHelper.EndEventProcess``1(``0,System.String,Clean.Microservice.Serverless.UseCases.DomainNotifications.DomainNotificationUseCase,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            End event process logging notification messages.
+            </summary>
+            <typeparam name="TResult">Type of result data.</typeparam>
+            <param name="result">Result data. If the object is null, throw exception and call the poisoned event function. Otherwise, the event was processed successfully.</param>
+            <param name="correlationId">Correlation id.</param>
+            <param name="notificationUseCase">Use case to extract notifications.</param>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="patternLog">Pattern log.</param>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Helpers.TimerTriggerHelper">
+            <summary>
+            Helpers for event hub trigger.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.TimerTriggerHelper.CreatePatternLog(System.String,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Create pattern log.
+            </summary>
+            <param name="className">Name of trigger class.</param>
+            <param name="serverlessLogger">Logger to save log with pattern created and execution time.</param>
+            <returns>Pattern log created.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.TimerTriggerHelper.GetCorrelationId(Microsoft.Azure.EventHubs.EventData,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            Extract correlationId value from <see cref="T:Microsoft.Azure.EventHubs.EventData"/> properties.
+            </summary>
+            <param name="eventData">Event data.</param>
+            <param name="serverlessLogger">Logger to save log with correlationId extracted.</param>
+            <param name="patternLog">Pattern log.</param>
+            <returns>CorrelationId value extracted.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.TimerTriggerHelper.StartEventProcessAsync(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,Microsoft.Extensions.Logging.ILogger,System.String,Microsoft.Azure.EventHubs.EventData[],System.Func{Microsoft.Azure.EventHubs.EventData,System.Threading.Tasks.Task})">
+            <summary>
+            Start event hub process.
+            </summary>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="logger">Logger to be injected in <paramref name="serverlessLogger"/>.</param>
+            <param name="patternLog">Pattern log.</param>
+            <param name="events">Events to be processed.</param>
+            <param name="func">Process with business rules to be processed.</param>
+            <returns>Task executed.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Helpers.TimerTriggerHelper.EndEventProcess``1(``0,System.String,Clean.Microservice.Serverless.UseCases.DomainNotifications.DomainNotificationUseCase,Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String)">
+            <summary>
+            End event process logging notification messages.
+            </summary>
+            <typeparam name="TResult">Type of result data.</typeparam>
+            <param name="result">Result data. If the object is null, throw exception. Otherwise, the event was processed successfully.</param>
+            <param name="correlationId">Correlation id.</param>
+            <param name="notificationUseCase">Use case to extract notifications.</param>
+            <param name="serverlessLogger">Logger to save log.</param>
+            <param name="patternLog">Pattern log.</param>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.AuthenticationMiddleware">
+            <summary>
+            Authentication middleware.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.AuthenticationMiddleware.#ctor(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger,System.String,System.String,System.String,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.AuthenticationMiddleware"/> class.
+            </summary>
+            <param name="serverlessLogger">Modal logger.</param>
+            <param name="issuer">Authentication issuer.</param>
+            <param name="audience">Authentication audience.</param>
+            <param name="metadataAddress">Authentication metadata address.</param>
+            <param name="acessor">See <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/>.</param>
+            <param name="isDebug">True if environment is debug mode. Otherwise, false.</param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.AuthenticationMiddleware.InvokeAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.ExceptionMiddleware">
+            <summary>
+            Exception middleware.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.ExceptionMiddleware.#ctor(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.ExceptionMiddleware"/> class.
+            </summary>
+            <param name="serverlessLogger">Logger to log error.</param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.ExceptionMiddleware.InvokeAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.HeaderMiddleware">
+            <summary>
+            Header middleware to manager correlation id and request id.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.HeaderMiddleware.InvokeAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext">
+            <summary>
+            Class with http function context.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext.Request">
+            <inheritdoc/>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext.Response">
+            <inheritdoc/>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext.Logger">
+            <inheritdoc/>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext.Build(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Build a <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext"/> from <see cref="T:Microsoft.AspNetCore.Http.HttpRequest"/>.
+            </summary>
+            <param name="request">See <see cref="T:Microsoft.AspNetCore.Http.HttpRequest"/> data.</param>
+            <returns><see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpFunctionContext"/> built.</returns>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware">
+            <summary>
+            Class to implement middleware pattern.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware.#ctor(Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> class.
+            </summary>
+            <param name="next">Next <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> to build a middleware pipeline.</param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> class.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware.Next">
+            <summary>
+            Gets or sets the next <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> in pipeline execution.
+            </summary>
+            <value>
+            Next <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> in pipeline execution.
+            </value>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware.InvokeAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <summary>
+            Execute middleware.
+            </summary>
+            <param name="context">Function context.</param>
+            <returns>Task result.</returns>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext">
+            <summary>
+            Interface to http function context.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext.Request">
+            <summary>
+            Gets http request with request values.
+            </summary>
+            <value>
+            Http request with request values.
+            </value>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext.Response">
+            <summary>
+            Gets or sets function response data.
+            </summary>
+            <value>
+            Function response data.
+            </value>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext.Logger">
+            <summary>
+            Gets logger interface.
+            </summary>
+            <value>
+            Logger interface.
+            </value>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.Helpers.IMiddlewarePipeline">
+            <summary>
+            Interface to middleware pipeline.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.IMiddlewarePipeline.Register(Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware)">
+            <summary>
+            Register a pipeline.
+            </summary>
+            <param name="middleware">Next middleware in pipeline.</param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.IMiddlewarePipeline.GetRegisteredPipeline">
+            <summary>
+            Get registered pipeline.
+            </summary>
+            <returns>Registered pipeline.</returns>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.IMiddlewarePipeline.ExecuteAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <summary>
+            Execute pipeline.
+            </summary>
+            <param name="context">Http function context.</param>
+            <returns>Function response data.</returns>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline">
+            <summary>
+            Class to middleware pipeline.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline.#ctor(System.Collections.Generic.List{Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware},Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline"/> class.
+            </summary>
+            <param name="pipeline">List of <see cref="T:Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware"/> to build a pipeline.</param>
+            <param name="serverlessLogger">Logger to log error in case of fail.</param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline.Register(Modal.SharedKernel.Function.Middlewares.Helpers.HttpMiddleware)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline.GetRegisteredPipeline">
+            <inheritdoc/>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.Helpers.MiddlewarePipeline.ExecuteAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Middlewares.LoggerMiddleware">
+            <summary>
+            Logger middleware to log function request and response using <see cref="T:Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger"/>.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.LoggerMiddleware.#ctor(Clean.Microservice.Serverless.Plugin.Logger.IServerlessLogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.Middlewares.LoggerMiddleware"/> class.
+            </summary>
+            <param name="serverlessLogger"></param>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.Middlewares.LoggerMiddleware.InvokeAsync(Modal.SharedKernel.Function.Middlewares.Helpers.IHttpFunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter">
+            <summary>
+            Presenter for bad request results.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter.#ctor(MediatR.INotificationHandler{Clean.Microservice.Serverless.UseCases.DomainNotifications.DomainNotification})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter"/> class.
+            </summary>
+            <param name="notifications">Domain notifications.</param>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter.ResponseModel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter.Populate(System.Collections.Generic.List{System.ComponentModel.DataAnnotations.ValidationResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.BadRequestPresenter.Populate(System.String,System.String)">
+            <summary>
+            Populate response with bad request validation code and message.
+            </summary>
+            <param name="code">Bad request validation code.</param>
+            <param name="message">Bad request validation message.</param>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.UseCases.Presenters.BasePresenter">
+            <summary>
+            Base presenter.
+            </summary>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.BasePresenter.#ctor(MediatR.INotificationHandler{Clean.Microservice.Serverless.UseCases.DomainNotifications.DomainNotification})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Modal.SharedKernel.Function.UseCases.Presenters.BasePresenter"/> class.
+            </summary>
+            <param name="notifications">Domain notifications.</param>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.UseCases.Presenters.BasePresenter.Notifications">
+            <summary>
+            Gets list of domain notifications.
+            </summary>
+            <value>
+            List of domain notifications.
+            </value>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.BasePresenter.IsValidOperation">
+            <summary>
+            Check if the function has been successfully executed.
+            </summary>
+            <returns>True if the function has been successfully executed. Otherwise, false.</returns>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.UseCases.Presenters.IPresenter`1">
+            <summary>
+            Interface to result presenter.
+            </summary>
+            <typeparam name="TResult">Type of result data.</typeparam>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.UseCases.Presenters.IPresenter`1.ResponseModel">
+            <summary>
+            Gets api response model.
+            </summary>
+            <value>
+            Api response model.
+            </value>
+        </member>
+        <member name="M:Modal.SharedKernel.Function.UseCases.Presenters.IPresenter`1.Populate(`0)">
+            <summary>
+            Populate response with <typeparamref name="TResult"/> data.
+            </summary>
+            <param name="result">Result to be mapped.</param>
+        </member>
+        <member name="T:Modal.SharedKernel.Function.Resources.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.FORBIDDEN_ACCESS_CODE">
+            <summary>
+              Looks up a localized string similar to ACCESS_FORBIDDEN.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.FORBIDDEN_ACCESS_MESSAGE">
+            <summary>
+              Looks up a localized string similar to Acesso inválido {0}!.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.UNPREDICTABLE_CODE">
+            <summary>
+              Looks up a localized string similar to UNPREDICTABLE.
+            </summary>
+        </member>
+        <member name="P:Modal.SharedKernel.Function.Resources.Messages.UNPREDICTABLE_MESSAGE">
+            <summary>
+              Looks up a localized string similar to Ocorreu um erro inesperado. Por favor, tente novamente mais tarde..
+            </summary>
+        </member>
+    </members>
+</doc>

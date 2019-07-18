@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Clean.Microservice.Serverless.SharedKernel.Core</AssemblyName>
+    <RootNamespace>Clean.Microservice.Serverless.SharedKernel.Core</RootNamespace>
+    <PackageId>Clean.Microservice.Serverless.SharedKernel.Core</PackageId>
+    <CodeAnalysisRuleSet>..\..\items\ca.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Company>Clean.Microservice.Serverless</Company>
+    <Authors>Clean.Microservice.Serverless Team</Authors>
+    <Version>1.0.9</Version>
+    <Copyright>Copyright 2019 (c) Clean.Microservice.Serverless. All rights reserved.</Copyright>
+    <Description>Base package with core data to Serverless .Net products.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>core sharedkernel shared kernel serverless base</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ProjectGuid>{A2FCE3D3-D1B0-4A3D-B163-A6A7A0911E51}</ProjectGuid>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Clean.Microservice.Serverless.SharedKernel.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Clean.Microservice.Serverless.SharedKernel.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\SoapHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\items\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="FluentValidation" Version="8.2.2" />
+    <PackageReference Include="IdentityServer4" Version="2.4.0" />
+    <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Azure.EventHubs" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.4" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\HttpMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HttpMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UseCases\Models\V1\DateMonthModelFields.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DateMonthModelFields.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\HttpMessage.en-US.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\HttpMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HttpMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UseCases\Models\V1\DateMonthModelFields.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DateMonthModelFields.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
